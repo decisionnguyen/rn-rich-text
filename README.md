@@ -10,7 +10,7 @@ or
 ### example
 
 
-<img style="width: 300px; height: auto; border-width: 1px; border-color: #eeeeee" src="https://git.base.vn/base-rn/rn-rich-text/raw/master/sample/image-sample.png" />
+<img style="width: 300px; height: auto; border-width: 1px; border-color: #eeeeee" src="https://github.com/decisionnguyen/rn-rich-text/blob/master/sample/image-sample.png" />
 
 ```
 import { RichTextEditor } from 'rn-rich-text';
