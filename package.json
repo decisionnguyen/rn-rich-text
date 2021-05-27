@@ -2,7 +2,7 @@
   "name": "rn-rich-text",
   "title": "React Native Rich Text Editor",
   "private": true,
-  "version": "1.0.37",
+  "version": "1.0.38",
   "description": "React Native Rich Text Editor Module",
   "main": "index.ts",
   "scripts": {
