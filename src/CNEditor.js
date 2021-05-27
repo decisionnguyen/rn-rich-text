@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {WebView} from 'react-native-webview';
 import htmlEditor from './html/editor';
-import {StyleSheet, View, Image, Keyboard} from 'react-native';
+import {StyleSheet, View, Image, ActivityIndicator, Dimensions, Keyboard} from 'react-native';
 
 const shortid = require('shortid');
+const {width, height} = Dimensions.get('window');
 
 export default class CNEditor extends Component {
 
@@ -12,7 +13,8 @@ export default class CNEditor extends Component {
         this.isInit = false;
         this.state = {
             layoutWidth: 400,
-            keyboardShow: false
+            keyboardShow: false,
+            loading: true
         };
         this.webViewRef = null;
         this._resolve = null;
@@ -201,6 +203,7 @@ export default class CNEditor extends Component {
     };
 
     onLoad = () => {
+        this.setState({loading: false})
         if (this.props.initialHtml) {
             this.setHtml(this.props.initialHtml);
         }
@@ -360,6 +363,12 @@ export default class CNEditor extends Component {
                     showsVerticalScrollIndicator={false}
                     scrollEnabled={false}
                 />
+                {this.state.loading && (
+                    <ActivityIndicator
+                        style={styles.loading}
+                        color={'#0077cc'}
+                    />
+                )}
             </View>
         );
     }
@@ -372,5 +381,6 @@ let styles = StyleSheet.create({
     webView: {
         flexGrow: 1,
         backgroundColor: 'transparent',
-    }
+    },
+    loading: { position: "absolute", top: 200, left: width / 2 - 10 }
 });
