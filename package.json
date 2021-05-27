@@ -1,5 +1,5 @@
 {
-  "name": "RichText",
+  "name": "rn-rich-text",
   "title": "React Native Rich Text Editor",
   "private": true,
   "version": "1.0.37",
@@ -43,6 +43,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/decisionnguyen/rich-text#develop"
+    "url": "https://github.com/decisionnguyen/rn-rich-text"
   }
 }
