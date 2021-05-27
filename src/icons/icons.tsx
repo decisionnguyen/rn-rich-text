@@ -1,0 +1,11 @@
+export const IC_FORMAT_BOLD = require('./format_bold_24px.png');
+export const IC_FORMAT_ITALIC = require('./italic_24px.png');
+export const IC_FORMAT_STRIKE = require('./format_strikethrough_24px.png');
+export const IC_FORMAT_UNDERLINE = require('./format_underlined_24px.png');
+export const IC_FORMAT_PHOTO = require('./insert_photo_24px.png');
+export const IC_COLOR_FILL = require('./format_color_fill_24px.png');
+export const IC_COLOR_TEXT = require('./format_color_text_24px.png');
+export const IC_LIST_BULLET = require('./format_list_bulleted_24px.png');
+export const IC_LIST_NUMBER = require('./format_list_numbered_24px.png');
+export const IC_HEADING_1 = require('./heading-1.png');
+export const IC_HEADING_2 = require('./heading-2.png');

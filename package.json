@@ -1,0 +1,48 @@
+{
+  "name": "RichText",
+  "title": "React Native Rich Text Editor",
+  "private": true,
+  "version": "1.0.37",
+  "description": "React Native Rich Text Editor Module",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "Dinh Pu",
+    "email": "decisionnguyen@gmail.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "peerDependencies": {
+    "react-native-keyboard-spacer": "^0.4.1",
+    "react-native-image-picker": "^2.3.1",
+    "react-native-popup-menu": "^0.15.7",
+    "react-native-webview": "^9.4.0",
+    "shortid": "^2.2.15",
+    "quill": "^1.3.7",
+    "react": "^16.8.6",
+    "react-native": ">=0.60.5 <1.0.x"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
+    "@types/react": "^16.9.2",
+    "@types/react-native": "^0.60.13",
+    "@types/react-redux": "^7.1.2",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-functional-hmr": "^1.0.25",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "react": "^16.8.6",
+    "react-native": "^0.60.5",
+    "typescript": "^3.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/decisionnguyen/rich-text#develop"
+  }
+}
