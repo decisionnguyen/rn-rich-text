@@ -21,15 +21,6 @@ import CNToolbar from './CNToolbar';
 import {convertToObject, convertToHtmlString, getInitialObject, getDefaultStyles} from './Convertors';
 
 import {
-    Menu,
-    MenuOptions,
-    MenuOption,
-    MenuTrigger,
-    MenuProvider,
-    renderers, MenuOptionsCustomStyle,
-} from 'react-native-popup-menu';
-
-import {
     IC_COLOR_FILL,
     IC_COLOR_TEXT,
     IC_FORMAT_BOLD,
@@ -39,7 +30,6 @@ import {
     IC_FORMAT_UNDERLINE, IC_HEADING_1, IC_HEADING_2, IC_LIST_BULLET, IC_LIST_NUMBER,
 } from './icons/icons';
 
-const {SlideInMenu} = renderers;
 
 const IS_IOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
@@ -351,8 +341,8 @@ class WrapRichText extends Component<Props, State> {
         console.log(`image removed (url : ${url})`);
     };
 
-    getOtherTool = (icons = []) => {
-        let _result = {
+    getOtherTool = (icons: string[] = []) => {
+        let _result: {type: string, iconArray: any[]} = {
             type: 'tool',
             iconArray: [],
         };
@@ -362,19 +352,6 @@ class WrapRichText extends Component<Props, State> {
                 toolTypeText: 'image',
                 iconComponent: this.renderImageSelector(),
             }];
-            hasData = true
-        }
-        if (icons.indexOf('color') > -1) {
-            _result.iconArray = [
-                ..._result.iconArray,
-                {
-                    toolTypeText: 'color',
-                    iconComponent: this.renderColorSelector(),
-                },
-                {
-                    toolTypeText: 'highlight',
-                    iconComponent: this.renderHighlight(),
-                }];
             hasData = true
         }
         if (!hasData) {
@@ -398,92 +375,6 @@ class WrapRichText extends Component<Props, State> {
         )
     }
 
-    renderColorMenuOptions = () => {
-        let lst = [];
-
-        if (defaultStyles[this.state.selectedColor]) {
-            lst = this.state.colors.filter((_color: string) => _color !== this.state.selectedColor);
-            lst.push('default');
-            lst.push(this.state.selectedColor);
-        } else {
-            lst = this.state.colors.filter((_color: string) => true);
-            lst.push('default');
-        }
-
-        return (
-            lst.map((item: any) => {
-                let color = defaultStyles[item] ? defaultStyles[item].color : 'black';
-                return (
-                    <MenuOption value={item} key={item}>
-                        <Image source={IC_COLOR_TEXT} style={[styles.btnAction, {tintColor: color}]}/>
-                    </MenuOption>
-                );
-            })
-
-        );
-    };
-
-    renderHighlightMenuOptions = () => {
-        let lst = [];
-
-        if (defaultStyles[this.state.selectedHighlight]) {
-            lst = this.state.highlights.filter((_color: any) => _color !== this.state.selectedHighlight);
-            lst.push('default');
-            lst.push(this.state.selectedHighlight);
-        } else {
-            lst = this.state.highlights.filter((_color: any) => true);
-            lst.push('default');
-        }
-
-        return (
-            lst.map((item: any) => {
-                let bgColor = defaultStyles[item] ? defaultStyles[item].backgroundColor : 'black';
-                return (
-                    <MenuOption value={item} key={item}>
-                        <Image source={IC_COLOR_FILL} style={[styles.btnAction, {tintColor: bgColor}]}/>
-                    </MenuOption>
-                );
-            })
-
-        );
-    };
-
-    renderColorSelector() {
-
-        let selectedColor = '#333333';
-        if (defaultStyles[this.state.selectedColor]) {
-            selectedColor = defaultStyles[this.state.selectedColor].color;
-        }
-        return (
-            <Menu renderer={SlideInMenu} onSelect={this.onColorSelectorClicked}>
-                <MenuTrigger>
-                    <Image source={IC_COLOR_TEXT} style={[styleBtnAction, {tintColor: selectedColor}]}/>
-                </MenuTrigger>
-                <MenuOptions customStyles={optionsStyles}>
-                    {this.renderColorMenuOptions()}
-                </MenuOptions>
-            </Menu>
-        );
-    }
-
-    renderHighlight() {
-        let selectedColor = '#333333';
-        if (defaultStyles && defaultStyles[this.state.selectedHighlight]) {
-            selectedColor = defaultStyles[this.state.selectedHighlight].backgroundColor || '#333333';
-        }
-        return (
-            <Menu renderer={SlideInMenu} onSelect={this.onHighlightSelectorClicked}>
-                <MenuTrigger>
-                    <Image source={IC_COLOR_FILL}
-                           style={[styleBtnAction, {tintColor: selectedColor}]}/>
-                </MenuTrigger>
-                <MenuOptions customStyles={highlightOptionsStyles}>
-                    {this.renderHighlightMenuOptions()}
-                </MenuOptions>
-            </Menu>
-        );
-    }
-
     render() {
         const _result = this.getOtherTool(this.props.toolbarItem || []);
 
@@ -497,7 +388,7 @@ class WrapRichText extends Component<Props, State> {
                 style={styles.root}
                 behavior={IS_IOS ? 'padding' : undefined}
             >
-                <MenuProvider style={styles.container}>
+                <View style={styles.container}>
                     <View style={styles.main}>
                         <CNRichTextEditor
                             ref={input => this.editor = input}
@@ -533,7 +424,7 @@ class WrapRichText extends Component<Props, State> {
                             </View>
                             : null
                     }
-                </MenuProvider>
+                </View>
             </KeyboardAvoidingView>
         );
     }
@@ -576,54 +467,5 @@ var styles = StyleSheet.create({
     },
 });
 
-const optionsStyles = {
-    optionsContainer: {
-        padding: 0,
-        width: 40,
-        marginLeft: width - 40 - 30,
-        alignItems: 'flex-end',
-    },
-    optionsWrapper: {
-        //width: 40,
-        backgroundColor: 'white',
-    },
-    optionWrapper: {
-        //backgroundColor: 'yellow',
-        margin: 2,
-    },
-    optionTouchable: {
-        underlayColor: 'gold',
-        activeOpacity: 70,
-    },
-    // optionText: {
-    //   color: 'brown',
-    // },
-};
-
-const highlightOptionsStyles: MenuOptionsCustomStyle = {
-    optionsContainer: {
-        backgroundColor: 'transparent',
-        padding: 0,
-        width: 40,
-        marginLeft: width - 40,
-
-        alignItems: 'flex-end',
-    },
-    optionsWrapper: {
-        //width: 40,
-        backgroundColor: 'white',
-    },
-    optionWrapper: {
-        //backgroundColor: 'yellow',
-        margin: 2,
-    },
-    optionTouchable: {
-        underlayColor: 'gold',
-        activeOpacity: 70,
-    },
-// optionText: {
-//   color: 'brown',
-// },
-};
 
 export default WrapRichText;
