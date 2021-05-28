@@ -2,7 +2,7 @@
   "name": "rn-rich-text",
   "title": "React Native Rich Text Editor",
   "private": true,
-  "version": "1.0.39",
+  "version": "1.0.40",
   "description": "React Native Rich Text Editor Module",
   "main": "index.ts",
   "scripts": {
@@ -19,9 +19,9 @@
   "licenseFilename": "LICENSE",
   "peerDependencies": {
     "react-native-keyboard-spacer": "^0.4.1",
-    "react-native-image-picker": "^2.3.1",
+    "react-native-image-picker": "^3.8.1",
     "react-native-popup-menu": "^0.15.7",
-    "react-native-webview": "^9.4.0",
+    "react-native-webview": "^11.3.2",
     "shortid": "^2.2.15",
     "quill": "^1.3.7",
     "react": "^16.8.6",
