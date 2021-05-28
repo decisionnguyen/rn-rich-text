@@ -14,7 +14,7 @@ import {
     ViewStyle,
     ActivityIndicator,
 } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+import {ImageLibraryOptions, launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 import CNRichTextEditor from './CNEditor';
 import CNToolbar from './CNToolbar';
@@ -283,15 +283,12 @@ class WrapRichText extends Component<Props, State> {
     }
 
     useLibraryHandler = async () => {
-        let options = {};
-        ImagePicker.showImagePicker(options, response => {
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            } else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
-            } else {
+        let options: ImageLibraryOptions = {
+            mediaType: "photo",
+            quality: 0.6
+        };
+        launchImageLibrary(options, response => {
+            if (response?.uri) {
                 if (!this.props.onInsertImage) {
                     return
                 }
@@ -363,7 +360,9 @@ class WrapRichText extends Component<Props, State> {
     renderImageSelector() {
         if (this.state.uploading) {
             return (
-                <ActivityIndicator color={'#0077cc'}/>
+                <View style={styles.loadingIcon}>
+                    <ActivityIndicator color={'#0077cc'}/>
+                </View>
             )
         }
         return (
