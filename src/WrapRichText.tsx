@@ -226,20 +226,6 @@ class WrapRichText extends Component<Props, State> {
             placeHolder,
             iconSet: listIconSet
         });
-        Keyboard.addListener("keyboardDidShow", this._keyboardDidShow);
-    };
-
-    UNSAFE_componentWillUnmount = () => {
-        Keyboard.removeAllListeners('keyboardDidShow', this._keyboardDidShow)
-    };
-
-    _keyboardDidShow = () => {
-        this.editor && this.editor.keyboardShow();
-        if (Platform.OS === 'ios') {
-            StatusBar.setBarStyle('dark-content');
-        } else {
-            StatusBar.setBarStyle('light-content');
-        }
     };
 
     onStyleKeyPress = (toolType) => {
